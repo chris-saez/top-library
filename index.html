@@ -9,21 +9,8 @@
     <title>Library</title>
 </head>
 <body>
-    <div id="header">
-        <img src="./assets/Logo.png" alt="logo" width="52px" height="52px">
-        <div id="library-title">
-            <h1>My Library</h1>
-            <img src="./assets/chevron-up.svg" width="40px">
-        </div>
-        <div class="empty"></div>
-    </div>
-
-    <div id="library-section">
-        <button id="book-form-btn">Add Book</button>
-    </div>
-
-    <div id="add-book-form">
-        <form>
+    <div id="book-form-container" class="hide">
+        <form id="add-book-form">
             <label for="book-title">Book Title*</label>
             <input type="text" id="book-title" name="book-title" placeholder="Cat In The Hat" required>
 
@@ -39,10 +26,24 @@
                 <button type="button">Not Read</button>
             </div>
 
-            <button id="add-book-btn" type="submit">Confirm</button>
+            <button id="confirm-book-btn" type="submit">Confirm</button>
         </form>
     </div>
+
+    <div id="black-overlay" class="hide opacity-70"></div>
     
+    <div id="header">
+        <img src="./assets/Logo.png" alt="logo" width="52px" height="52px">
+        <div id="library-title">
+            <h1>My Library</h1>
+            <img src="./assets/chevron-up.svg" width="40px">
+        </div>
+        <div class="empty"></div>
+    </div>
+
+    <div id="library-section">
+        <button id="add-book-btn">Add Book</button>
+    </div>
     <script src="./script.js"></script>
 </body>
 </html>

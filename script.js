@@ -21,6 +21,17 @@ function Book(title, author, pages, read) {
 }
 
 function addBookToLibrary() {
+    bookForm.classList.remove('hide');
+    blackOverlay.classList.remove('hide');
+}
+
+function closeForm() {
+    bookForm.classList.add('hide');
+    blackOverlay.classList.add('hide');
+}
+
+// Loops through myLibrary array and renders book objects on to browser
+function scanBooks() {
     let bookCard = myLibrary.forEach(book =>{
         let libraryCard = document.createElement("div");
         libraryCard.setAttribute('class', 'book-card');
@@ -46,6 +57,13 @@ function addBookToLibrary() {
 }
 
 const librarySection = document.getElementById("library-section");
-const addBookButton = document.getElementById("book-form-btn");
+const addBookButton = document.getElementById("add-book-btn");
+const bookForm = document.getElementById("book-form-container");
+const blackOverlay = document.getElementById("black-overlay");
 
-addBookToLibrary();
+addBookButton.addEventListener("click", addBookToLibrary);
+blackOverlay.addEventListener("click", closeForm);
+
+scanBooks();
+
+// work on adding functionality to the add button to show a centered form and create a black overlay over the other elements
