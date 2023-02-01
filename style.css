@@ -18,6 +18,10 @@ button {
     padding: 12px 24px;
 }
 
+#confirm-book-btn {
+    margin-top: 24px;
+}
+
 #add-book-form {
     display:  flex;
     flex-direction: column;
@@ -63,3 +67,40 @@ button {
     opacity: 0;
     visibility: hidden;
 }
+
+#read-container {
+    background-color: #E6E6E9;
+    display: flex;
+    gap: 24px;
+    padding: 8px;
+    position: relative;
+}
+
+#read-button,
+#not-read-button {
+    width: 100%;
+}
+
+.active-read {
+    background-color: #4353DB;
+}
+
+.active-not-read {
+    background-color: #E6E6E9;
+    color: #A2A3AE;
+}
+
+/* .slider-button {
+    display: block;
+    position: absolute;
+    background-color: red;
+    height: 100%;
+    right: 350px;
+    top: 0;
+    width: 280px;
+    transition: all 300ms ease;
+}
+
+.active-button {
+    right: 8px;
+} */

@@ -20,10 +20,11 @@
             <label for="book-pages">Number of Pages</label>
             <input type="number" id="book-pages" name="book-pages" placeholder="231">
 
+            <label>Did you read it?</label>
             <div id="read-container">
-                <label>Did you read it?</label>
-                <button type="button">Read</button>
-                <button type="button">Not Read</button>
+                <button id="read-button" class="active-read" type="button">Read</button>
+                <!-- <button class="slider-button active-button" type="button"></button> -->
+                <button id="not-read-button" class="active-not-read" type="button">Not Read</button>
             </div>
 
             <button id="confirm-book-btn" type="button">Confirm</button>

@@ -52,7 +52,7 @@ function scanBooks() {
     if(!bookCard.length){
         newArray = myLibrary;
     } else {
-        // Filter through the existing book objects to store only the newly added one
+        // Filter through the existing book objects and only append the new book ids
         newArray = myLibrary.filter(newBook => {
             return !Object.values(bookCard).some(oldBooks => oldBooks.getAttribute("data-id") == newBook.id);
         });
@@ -86,6 +86,8 @@ function scanBooks() {
 
 
 
+
+
 const librarySection = document.getElementById("library-section");
 const addBookButton = document.getElementById("add-book-btn");
 const confirmBookButton = document.getElementById("confirm-book-btn");
@@ -97,7 +99,28 @@ const bookPages = document.getElementById("book-pages");
 const blackOverlay = document.getElementById("black-overlay");
 const bookTitleText = document.getElementsByClassName("book-title-text");
 const bookCard = document.getElementsByClassName("book-card");
+const readButton = document.getElementById("read-button");
+const notReadButton = document.getElementById("not-read-button");
+
+readButton.addEventListener("click", () => {
+    readButton.classList.add("active-read");
+    readButton.classList.toggle("active-not-read");
+    notReadButton.classList.add("active-not-read");
+})
+
+notReadButton.addEventListener("click", () => {
+    notReadButton.classList.add("active-read");
+    notReadButton.classList.toggle("active-not-read");
+    readButton.classList.add("active-not-read");
+})
 
 addBookButton.addEventListener("click", addBookToLibrary);
 confirmBookButton.addEventListener("click", submitForm);
 blackOverlay.addEventListener("click", closeForm);
+
+// const readButton = document.querySelector(".slider-button");
+
+// readButton.addEventListener("click", () => {
+//     console.log("derp");
+//     readButton.classList.toggle("active-button");
+// });
