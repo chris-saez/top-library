@@ -14,12 +14,12 @@ let myLibrary = [
     // }
 ];
 
-function Book(title, author, pages,id) {
+function Book(title, author, pages,id, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    // this.read = read;
     this.id = id;
+    this.read = read;
     
 }
 
@@ -37,8 +37,15 @@ function closeForm() {
 
 // Creates new book object from user's form inputs, pushes into library array, then renders array of books
 function submitForm(){
+    let bookRead = "";
+    if (readButton.classList.contains("active-read")){
+        bookRead = "Read";
+    } else if (notReadButton.classList.contains("active-read")){
+        bookRead = "Not Read";
+    }
+
     let bookId = myLibrary.length;
-    let newBook = new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookId);
+    let newBook = new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookId, bookRead);
     myLibrary.push(newBook);
     closeForm();
     bookForm.reset();
@@ -62,23 +69,28 @@ function scanBooks() {
         let libraryCard = document.createElement("div");
         libraryCard.setAttribute('class', 'book-card');
         libraryCard.setAttribute('data-id', myLibrary.length-1);
+
+        let readTag = document.createElement("div");
+        if(newArray[i].read == "Read"){
+            readTag.setAttribute("class", "read-tag");
+            readTag.appendChild(document.createTextNode("Read"));
+        } else if (newArray[i].read == "Not Read") {
+            readTag.setAttribute("class", "not-read-tag");
+            readTag.appendChild(document.createTextNode("Not Read"));
+        }
         
         let titleContainer = document.createElement("h1");
         titleContainer.setAttribute('class', 'book-title-text');
         let titleText = document.createTextNode(newArray[i].title);
         titleContainer.appendChild(titleText);
     
-        let authorContainer = document.createElement("p");
-        let authorText = document.createTextNode(newArray[i].author);
-        authorContainer.appendChild(authorText);
-    
-        let pagesContainer = document.createElement("p");
-        let pagesText = document.createTextNode(newArray[i].pages);
-        pagesContainer.appendChild(pagesText);
-    
+        let bookDetailsContainer = document.createElement("p");
+        let bookDetailsText = document.createTextNode(newArray[i].author + " • " + newArray[i].pages + " pages");
+        bookDetailsContainer.appendChild(bookDetailsText);
+
+        libraryCard.appendChild(readTag);
         libraryCard.appendChild(titleContainer);
-        libraryCard.appendChild(authorContainer);
-        libraryCard.appendChild(pagesContainer);
+        libraryCard.appendChild(bookDetailsContainer);
     
         addBookButton.before(libraryCard);        
     }
