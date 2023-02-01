@@ -84,10 +84,6 @@ function scanBooks() {
     }
 }
 
-
-
-
-
 const librarySection = document.getElementById("library-section");
 const addBookButton = document.getElementById("add-book-btn");
 const confirmBookButton = document.getElementById("confirm-book-btn");
@@ -103,15 +99,25 @@ const readButton = document.getElementById("read-button");
 const notReadButton = document.getElementById("not-read-button");
 
 readButton.addEventListener("click", () => {
-    readButton.classList.add("active-read");
-    readButton.classList.toggle("active-not-read");
-    notReadButton.classList.add("active-not-read");
+    if(readButton.classList.contains("active-read")){
+        return;
+    } else {
+        notReadButton.classList.remove("active-read");
+        notReadButton.classList.add("active-not-read");
+        readButton.classList.remove("active-not-read");
+        readButton.classList.add("active-read");
+    }
 })
 
 notReadButton.addEventListener("click", () => {
-    notReadButton.classList.add("active-read");
-    notReadButton.classList.toggle("active-not-read");
-    readButton.classList.add("active-not-read");
+    if(notReadButton.classList.contains("active-read")){
+        return;
+    } else {
+        readButton.classList.remove("active-read");
+        readButton.classList.add("active-not-read");
+        notReadButton.classList.remove("active-not-read");
+        notReadButton.classList.add("active-read");
+    }
 })
 
 addBookButton.addEventListener("click", addBookToLibrary);
