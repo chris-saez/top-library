@@ -14,11 +14,13 @@ let myLibrary = [
     // }
 ];
 
-function Book(title, author, pages) {
+function Book(title, author, pages,id) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     // this.read = read;
+    this.id = id;
+    
 }
 
 // Reveals add book form to user and adds overlay to other elements
@@ -35,9 +37,11 @@ function closeForm() {
 
 // Creates new book object from user's form inputs, pushes into library array, then renders array of books
 function submitForm(){
-    let newBook = new Book(bookTitle.value, bookAuthor.value, bookPages.value);
+    let bookId = myLibrary.length;
+    let newBook = new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookId);
     myLibrary.push(newBook);
     closeForm();
+    bookForm.reset();
     scanBooks();
 }
 
@@ -45,18 +49,19 @@ function submitForm(){
 function scanBooks() {
     let newArray = [];
 
-    if(!bookTitleText.length){
+    if(!bookCard.length){
         newArray = myLibrary;
     } else {
         // Filter through the existing book objects to store only the newly added one
         newArray = myLibrary.filter(newBook => {
-            return !Object.values(bookTitleText).some(oldBooks => oldBooks.textContent == newBook.title);
+            return !Object.values(bookCard).some(oldBooks => oldBooks.getAttribute("data-id") == newBook.id);
         });
     }
 
     for (let i=0; i<newArray.length; i++) {
         let libraryCard = document.createElement("div");
         libraryCard.setAttribute('class', 'book-card');
+        libraryCard.setAttribute('data-id', myLibrary.length-1);
         
         let titleContainer = document.createElement("h1");
         titleContainer.setAttribute('class', 'book-title-text');
@@ -91,6 +96,7 @@ const bookAuthor = document.getElementById("book-author");
 const bookPages = document.getElementById("book-pages");
 const blackOverlay = document.getElementById("black-overlay");
 const bookTitleText = document.getElementsByClassName("book-title-text");
+const bookCard = document.getElementsByClassName("book-card");
 
 addBookButton.addEventListener("click", addBookToLibrary);
 confirmBookButton.addEventListener("click", submitForm);
