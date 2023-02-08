@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&display=swap" rel="stylesheet">
+    <title>Library</title>
+</head>
+<body class="bg-light-gray min-h-screen min-w-full relative px-16 pt-12">
+    <div id="book-form-container" class="opacity-0 hidden absolute h-screen w-1/2 ml-auto mr-auto left-0 right-0 flex items-center z-10">
+        <form id="add-book-form" class="flex flex-col my-0 mx-auto w-6/12 h-auto bg-[antiquewhite] px-6 py-3 rounded-md">
+            <label for="book-title">Book Title*</label>
+            <input type="text" id="book-title" name="book-title" placeholder="Cat In The Hat" required>
+
+            <label for="book-author">Author*</label>
+            <input type="text" id="book-author" name="book-author" placeholder="Dr. Seuss" required>
+
+            <label for="book-pages">Number of Pages</label>
+            <input type="number" id="book-pages" name="book-pages" placeholder="231">
+
+            <label>Did you read it?</label>
+            <div id="read-container" class="bg-[#E6E6E9] flex gap-6 p-2 relative">
+                <button id="read-button" class="active-read bg-primary-blue text-white px-6 py-3 w-full" type="button">Read</button>
+                <button id="not-read-button" class="active-not-read bg-primary-blue text-white px-6 py-3 w-full" type="button">Not Read</button>
+            </div>
+
+            <button id="confirm-book-btn" type="button" class="bg-primary-blue text-white px-6 py-3 mt-6">Confirm</button>
+        </form>
+    </div>
+
+    <div id="black-overlay" class="hidden opacity-70 absolute h-full w-full ml-auto mr-auto left-0 right-0 bg-black z-0"></div>
+
+    <div id="header" class="flex justify-between w-full mb-16">
+        <img src="../assets/Logo.png" alt="logo" width="52px" height="52px">
+        <div id="library-title" class="flex items-center">
+            <h1 class="text-4xl font-bold text-[#050826] mr-3">My Library</h1>
+            <img src="../assets/chevron-up.svg" width="40px">
+        </div>
+        <div class="empty"></div>
+    </div>
+
+    <div id="library-section" class="grid grid-cols-6 gap-4">
+        <button id="add-book-btn" class="bg-primary-blue text-white px-6 py-3">Add Book</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
