@@ -9,7 +9,7 @@
     <title>Library</title>
 </head>
 <body class="bg-light-gray min-h-screen min-w-full relative px-16 pt-12">
-    <div id="book-form-container" class="opacity-0 hidden absolute h-full w-1/2 ml-auto mr-auto left-0 top-0 right-0 flex items-center z-20">
+    <div id="book-form-container" class="opacity-0 hidden absolute h-full w-1/2 ml-auto mr-auto left-0 top-0 right-0 flex items-center z-30">
         <form id="add-book-form" class="flex flex-col my-0 mx-auto w-6/12 h-auto bg-white p-6 rounded-md">
             <label for="book-title" class="text-sm mb-2">Book Title*</label>
             <input type="text" id="book-title" name="book-title" placeholder="Cat In The Hat" class="rounded border border-[#B4B5BE] px-4 py-3 mb-4" required>
@@ -34,8 +34,8 @@
             <label class="text-sm mb-2">Upload book cover</label>
             <div id="image-upload-wrapper" class="w-full h-max relative">
                 <input type="file" id="img_input" name="img_input" accept="image/*" hidden>
-                <label for="img_input" class="flex flex-col justify-center items-center bg-white w-full py-6 cursor-pointer rounded border border-[#B4B5BE] relative">
-                    <div id="img_output" class="w-full h-full bg-center bg-cover absolute z-10"></div>
+                <label for="img_input" class="flex flex-col justify-center items-center bg-white w-full py-6 cursor-pointer rounded border border-[#B4B5BE] relative z-20">
+                    <div id="img_output" class="w-full h-full bg-center bg-cover absolute z-0 overflow-hidden"></div>
                     <img src="../assets/upload-cloud-02.svg" class="my-6">
                     <p class="text-sm text-gray-400"><strong class="text-[#4353DB]">Click to upload</strong> or drag and drop</p>
                     <p class="mb-6 text-xs text-gray-400">PNG or JPG (max. 800x800px)</p>

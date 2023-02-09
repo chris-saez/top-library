@@ -565,6 +565,10 @@ html {
   z-index: 20;
 }
 
+.z-30 {
+  z-index: 30;
+}
+
 .my-0 {
   margin-top: 0px;
   margin-bottom: 0px;
@@ -670,6 +674,11 @@ html {
   min-height: 100vh;
 }
 
+.min-h-fit {
+  min-height: -moz-fit-content;
+  min-height: fit-content;
+}
+
 .w-1\/2 {
   width: 50%;
 }
@@ -746,6 +755,10 @@ html {
 
 .gap-y-10 {
   row-gap: 2.5rem;
+}
+
+.overflow-hidden {
+  overflow: hidden;
 }
 
 .rounded-md {
@@ -840,8 +853,16 @@ html {
   background-size: cover;
 }
 
+.bg-contain {
+  background-size: contain;
+}
+
 .bg-center {
   background-position: center;
+}
+
+.bg-no-repeat {
+  background-repeat: no-repeat;
 }
 
 .p-2 {

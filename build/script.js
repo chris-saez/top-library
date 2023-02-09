@@ -4,38 +4,42 @@ let myLibrary = [
         author: 'JK Rowling',
         pages: '356',
         id: '0',
-        read: 'Read'
+        read: 'Read',
+        img: 'No cover'
     },
     {
         title: 'Harry Potter',
         author: 'JK Rowling',
         pages: '356',
         id: '1',
-        read: 'Read'
+        read: 'Read',
+        img: 'No cover'
     },
     {
         title: 'Harry Potter',
         author: 'JK Rowling',
         pages: '356',
         id: '2',
-        read: 'Read'
+        read: 'Read',
+        img: 'No cover'
     },
     {
         title: 'Harry Potter',
         author: 'JK Rowling',
         pages: '356',
         id: '3',
-        read: 'Read'
+        read: 'Read',
+        img: 'No cover'
     },
 ];
 
-function Book(title, author, pages, id, read) {
+function Book(title, author, pages, id, read, img) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.id = id;
     this.read = read;
-    
+    this.img = img;
 }
 
 // Reveals add book form to user and adds overlay to other elements
@@ -59,9 +63,15 @@ function submitForm(){
         bookRead = "Not Read";
     }
 
-    let inputs = document.querySelectorAll("input");
+    let bookImg = '';
+    if (!img_input.files[0]) {
+        bookImg = 'No cover'
+    } else {
+        bookImg = 'Cover'
+    }
+
     let bookId = myLibrary.length;
-    let newBook = new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookId, bookRead);
+    let newBook = new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookId, bookRead, bookImg);
     myLibrary.push(newBook);
     closeForm();
     scanBooks();
@@ -89,19 +99,31 @@ function scanBooks() {
         libraryCard.setAttribute('data-id', myLibrary.length-1);
 
         let imgContainer = document.createElement("div");
-        imgContainer.setAttribute('class', 'h-56 bg-[#F8F8F9] relative flex justify-center items-center')
-        let img = document.createElement("img");
-        img.setAttribute('src', '../assets/camera-01.svg');
+        imgContainer.setAttribute('class', 'h-56 bg-[#F8F8F9] relative flex justify-center items-center rounded bg-center bg-cover')
+        
+        if(outputArray[i].img == "No cover"){
+            let img = document.createElement("img");
+            img.setAttribute('src', '../assets/camera-01.svg');
+            imgContainer.appendChild(img);
+        } else if (outputArray[i].img == "Cover") {
+            const reader = new FileReader();
+            reader.addEventListener("load", () => {
+                    uploaded_image = reader.result;
+                    imgContainer.style.backgroundImage = `url(${uploaded_image})`;
+                });
+            reader.readAsDataURL(img_input.files[0]);
+        }
+                
+
+        // Create read or not read tag on library card
         let readTag = document.createElement("div");
         if(outputArray[i].read == "Read"){
-            readTag.setAttribute("class", "bg-[#DEF3DC] w-max px-4 py-2 rounded-full text-s text-[#12BA23] font-bold absolute top-3 left-3 z-0");
+            readTag.setAttribute("class", "bg-[#DEF3DC] w-max px-2 py-1 rounded-full text-xs text-[#12BA23] font-bold absolute top-3 left-3 z-0");
             readTag.appendChild(document.createTextNode("Read"));
         } else if (outputArray[i].read == "Not Read") {
-            readTag.setAttribute("class", "bg-[#FFE4C5] w-max px-2 py-1 rounded-full text-xs text-[#FC8B24] font-bold");
+            readTag.setAttribute("class", "bg-[#FFE4C5] w-max px-2 py-1 rounded-full text-xs text-[#FC8B24] font-bold absolute top-3 left-3 z-0");
             readTag.appendChild(document.createTextNode("Not Read"));
         }
-
-        imgContainer.appendChild(img);
         imgContainer.appendChild(readTag);
 
 
