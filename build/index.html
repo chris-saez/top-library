@@ -10,20 +10,35 @@
 </head>
 <body class="bg-light-gray min-h-screen min-w-full relative px-16 pt-12">
     <div id="book-form-container" class="opacity-0 hidden absolute h-screen w-1/2 ml-auto mr-auto left-0 right-0 flex items-center z-10">
-        <form id="add-book-form" class="flex flex-col my-0 mx-auto w-6/12 h-auto bg-[antiquewhite] px-6 py-3 rounded-md">
-            <label for="book-title">Book Title*</label>
-            <input type="text" id="book-title" name="book-title" placeholder="Cat In The Hat" required>
+        <form id="add-book-form" class="flex flex-col my-0 mx-auto w-6/12 h-auto bg-white p-6 rounded-md">
+            <label for="book-title" class="text-sm mb-2">Book Title*</label>
+            <input type="text" id="book-title" name="book-title" placeholder="Cat In The Hat" class="rounded border border-[#B4B5BE] px-4 py-3 mb-4" required>
 
-            <label for="book-author">Author*</label>
-            <input type="text" id="book-author" name="book-author" placeholder="Dr. Seuss" required>
+            <label for="book-author" class="text-sm mb-2">Author*</label>
+            <input type="text" id="book-author" name="book-author" placeholder="Dr. Seuss" class="rounded border border-[#B4B5BE] px-4 py-3 mb-4" required>
 
-            <label for="book-pages">Number of Pages</label>
-            <input type="number" id="book-pages" name="book-pages" placeholder="231">
+            <div id="pages-and-read-container" class="w-full flex gap-4 mb-4">
+                <div id="pages-container" class="w-1/3 flex flex-col">
+                    <label for="book-pages" class="text-sm mb-2">Number of Pages</label>
+                    <input type="number" id="book-pages" name="book-pages" class="rounded border border-[#B4B5BE] px-4 py-3 w-full h-max" placeholder="231">
+                </div>
+                <div id="read-container" class="w-2/3 flex flex-col">
+                    <label class="text-sm mb-2">Did you read it?</label>
+                    <div id="read-button-container" class="bg-[#E6E6E9] flex gap-6 p-2 relative rounded text-xs">
+                        <button id="read-button" class="active-read bg-primary-blue text-white px-6 py-3 w-1/2 h-max rounded" type="button">Read</button>
+                        <button id="not-read-button" class="active-not-read bg-primary-blue text-white px-6 py-3 w-full h-max rounded" type="button">Not Read</button>
+                    </div>
+                </div>
+            </div>
 
-            <label>Did you read it?</label>
-            <div id="read-container" class="bg-[#E6E6E9] flex gap-6 p-2 relative">
-                <button id="read-button" class="active-read bg-primary-blue text-white px-6 py-3 w-full" type="button">Read</button>
-                <button id="not-read-button" class="active-not-read bg-primary-blue text-white px-6 py-3 w-full" type="button">Not Read</button>
+            <label class="text-sm mb-2">Upload book cover</label>
+            <div id="image-upload-wrapper" class="w-full h-max">
+                <input type="file" id="img" name="img" accept="image/*" hidden>
+                <label for="img" class="flex flex-col justify-center items-center bg-white w-full py-6 cursor-pointer rounded border border-[#B4B5BE]">
+                    <img src="../assets/upload-cloud-02.svg" class="my-6">
+                    <p class="text-sm text-gray-400"><strong class="text-[#4353DB]">Click to upload</strong> or drag and drop</p>
+                    <p class="mb-6 text-xs text-gray-400">PNG or JPG (max. 800x800px)</p>
+                </label>
             </div>
 
             <button id="confirm-book-btn" type="button" class="bg-primary-blue text-white px-6 py-3 mt-6">Confirm</button>
