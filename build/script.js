@@ -53,9 +53,9 @@ function closeForm() {
 // Creates new book object from user's form inputs, pushes into library array, then renders array of books
 function submitForm(){
     let bookRead = "";
-    if (readButton.classList.contains("active-read")){
+    if (readButton.classList.contains("bg-white")){
         bookRead = "Read";
-    } else if (notReadButton.classList.contains("active-read")){
+    } else if (notReadButton.classList.contains("bg-white")){
         bookRead = "Not Read";
     }
 
@@ -83,7 +83,7 @@ function scanBooks() {
     // Loops through outputArray of Book objects and creates a library card DOM element for each 
     for (let i=0; i<outputArray.length; i++) {
         let libraryCard = document.createElement("div");
-        libraryCard.setAttribute('class', 'bg-white h-auto w-auto');
+        libraryCard.setAttribute('class', 'bg-white h-auto w-auto shadow-md border border-slate-800/5 py-3 px-4');
         libraryCard.setAttribute('data-id', myLibrary.length-1);
 
         let readTag = document.createElement("div");
@@ -91,7 +91,7 @@ function scanBooks() {
             readTag.setAttribute("class", "bg-[#DEF3DC] w-max px-2 py-1 rounded-full text-xs text-[#12BA23] font-bold");
             readTag.appendChild(document.createTextNode("Read"));
         } else if (outputArray[i].read == "Not Read") {
-            readTag.setAttribute("class", "not-read-tag");
+            readTag.setAttribute("class", "bg-[#FFE4C5] w-max px-2 py-1 rounded-full text-xs text-[#FC8B24] font-bold");
             readTag.appendChild(document.createTextNode("Not Read"));
         }
         
@@ -127,24 +127,24 @@ const readButton = document.getElementById("read-button");
 const notReadButton = document.getElementById("not-read-button");
 
 readButton.addEventListener("click", () => {
-    if(readButton.classList.contains("active-read")){
+    if(readButton.classList.contains("bg-white")){
         return;
     } else {
-        notReadButton.classList.remove("active-read");
-        notReadButton.classList.add("active-not-read");
-        readButton.classList.remove("active-not-read");
-        readButton.classList.add("active-read");
+        notReadButton.classList.remove("bg-white", "text-[#4353DB]", "font-bold");
+        notReadButton.classList.add("text-[#A2A3AE]");
+        readButton.classList.remove("text-[#A2A3AE]");
+        readButton.classList.add("bg-white", "text-[#4353DB]", "font-bold");
     }
 });
 
 notReadButton.addEventListener("click", () => {
-    if(notReadButton.classList.contains("active-read")){
+    if(notReadButton.classList.contains("bg-white")){
         return;
     } else {
-        readButton.classList.remove("active-read");
-        readButton.classList.add("active-not-read");
-        notReadButton.classList.remove("active-not-read");
-        notReadButton.classList.add("active-read");
+        readButton.classList.remove("bg-white", "text-[#4353DB]", "font-bold");
+        readButton.classList.add("text-[#A2A3AE]");
+        notReadButton.classList.remove("text-[#A2A3AE]");
+        notReadButton.classList.add("bg-white", "text-[#4353DB]", "font-bold");
     }
 });
 
