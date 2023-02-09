@@ -9,7 +9,7 @@
     <title>Library</title>
 </head>
 <body class="bg-light-gray min-h-screen min-w-full relative px-16 pt-12">
-    <div id="book-form-container" class="opacity-0 hidden absolute h-screen w-1/2 ml-auto mr-auto left-0 right-0 flex items-center z-10">
+    <div id="book-form-container" class="opacity-0 hidden absolute h-full w-1/2 ml-auto mr-auto left-0 top-0 right-0 flex items-center z-20">
         <form id="add-book-form" class="flex flex-col my-0 mx-auto w-6/12 h-auto bg-white p-6 rounded-md">
             <label for="book-title" class="text-sm mb-2">Book Title*</label>
             <input type="text" id="book-title" name="book-title" placeholder="Cat In The Hat" class="rounded border border-[#B4B5BE] px-4 py-3 mb-4" required>
@@ -32,9 +32,10 @@
             </div>
 
             <label class="text-sm mb-2">Upload book cover</label>
-            <div id="image-upload-wrapper" class="w-full h-max">
-                <input type="file" id="img" name="img" accept="image/*" hidden>
-                <label for="img" class="flex flex-col justify-center items-center bg-white w-full py-6 cursor-pointer rounded border border-[#B4B5BE]">
+            <div id="image-upload-wrapper" class="w-full h-max relative">
+                <input type="file" id="img_input" name="img_input" accept="image/*" hidden>
+                <label for="img_input" class="flex flex-col justify-center items-center bg-white w-full py-6 cursor-pointer rounded border border-[#B4B5BE] relative">
+                    <div id="img_output" class="w-full h-full bg-center bg-cover absolute z-10"></div>
                     <img src="../assets/upload-cloud-02.svg" class="my-6">
                     <p class="text-sm text-gray-400"><strong class="text-[#4353DB]">Click to upload</strong> or drag and drop</p>
                     <p class="mb-6 text-xs text-gray-400">PNG or JPG (max. 800x800px)</p>
@@ -45,7 +46,7 @@
         </form>
     </div>
 
-    <div id="black-overlay" class="hidden opacity-70 absolute h-full w-full ml-auto mr-auto left-0 right-0 bg-black z-0"></div>
+    <div id="black-overlay" class="hidden opacity-70 absolute h-full w-full ml-auto mr-auto left-0 top-0 bottom-0 bg-black z-10"></div>
 
     <div id="header" class="flex justify-between w-full mb-16">
         <img src="../assets/Logo.png" alt="logo" width="52px" height="52px">
@@ -56,8 +57,8 @@
         <div class="empty"></div>
     </div>
 
-    <div id="library-section" class="grid grid-cols-6 gap-4">
-        <button id="add-book-btn" class="bg-primary-blue text-white px-6 py-3">Add Book</button>
+    <div id="library-section" class="grid grid-cols-6 gap-x-4 gap-y-10">
+        <button id="add-book-btn" class="bg-primary-blue text-white px-6 py-3 rounded-lg">Add Book</button>
     </div>
     <script src="script.js"></script>
 </body>

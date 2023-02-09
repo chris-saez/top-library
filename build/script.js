@@ -59,12 +59,14 @@ function submitForm(){
         bookRead = "Not Read";
     }
 
+    let inputs = document.querySelectorAll("input");
     let bookId = myLibrary.length;
     let newBook = new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookId, bookRead);
     myLibrary.push(newBook);
     closeForm();
-    bookForm.reset();
     scanBooks();
+    bookForm.reset();
+    img_output.style.backgroundImage = null;
 }
 
 // Loops through myLibrary array and renders book objects on to browser
@@ -83,20 +85,28 @@ function scanBooks() {
     // Loops through outputArray of Book objects and creates a library card DOM element for each 
     for (let i=0; i<outputArray.length; i++) {
         let libraryCard = document.createElement("div");
-        libraryCard.setAttribute('class', 'bg-white h-auto w-auto shadow-md border border-slate-800/5 py-3 px-4');
+        libraryCard.setAttribute('class', 'bg-white h-auto w-auto shadow-md border border-slate-800/5 py-3 px-4 rounded-lg');
         libraryCard.setAttribute('data-id', myLibrary.length-1);
 
+        let imgContainer = document.createElement("div");
+        imgContainer.setAttribute('class', 'h-56 bg-[#F8F8F9] relative flex justify-center items-center')
+        let img = document.createElement("img");
+        img.setAttribute('src', '../assets/camera-01.svg');
         let readTag = document.createElement("div");
         if(outputArray[i].read == "Read"){
-            readTag.setAttribute("class", "bg-[#DEF3DC] w-max px-2 py-1 rounded-full text-xs text-[#12BA23] font-bold");
+            readTag.setAttribute("class", "bg-[#DEF3DC] w-max px-4 py-2 rounded-full text-s text-[#12BA23] font-bold absolute top-3 left-3 z-0");
             readTag.appendChild(document.createTextNode("Read"));
         } else if (outputArray[i].read == "Not Read") {
             readTag.setAttribute("class", "bg-[#FFE4C5] w-max px-2 py-1 rounded-full text-xs text-[#FC8B24] font-bold");
             readTag.appendChild(document.createTextNode("Not Read"));
         }
-        
+
+        imgContainer.appendChild(img);
+        imgContainer.appendChild(readTag);
+
+
         let titleContainer = document.createElement("h1");
-        titleContainer.setAttribute('class', 'text-base font-bold');
+        titleContainer.setAttribute('class', 'text-base font-bold mt-3');
         let titleText = document.createTextNode(outputArray[i].title);
         titleContainer.appendChild(titleText);
     
@@ -104,7 +114,7 @@ function scanBooks() {
         let bookDetailsText = document.createTextNode(outputArray[i].author + " • " + outputArray[i].pages + " pages");
         bookDetailsContainer.appendChild(bookDetailsText);
 
-        libraryCard.appendChild(readTag);
+        libraryCard.appendChild(imgContainer);
         libraryCard.appendChild(titleContainer);
         libraryCard.appendChild(bookDetailsContainer);
     
@@ -125,6 +135,17 @@ const bookTitleText = document.getElementsByClassName("book-title-text");
 const bookCard = document.getElementsByClassName("book-card");
 const readButton = document.getElementById("read-button");
 const notReadButton = document.getElementById("not-read-button");
+const img_input = document.getElementById("img_input");
+const img_output = document.getElementById("img_output");
+
+img_input.addEventListener("change", function(){
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+        uploaded_image = reader.result;
+        img_output.style.backgroundImage = `url(${uploaded_image})`;
+    });
+    reader.readAsDataURL(this.files[0]);
+})
 
 readButton.addEventListener("click", () => {
     if(readButton.classList.contains("bg-white")){
