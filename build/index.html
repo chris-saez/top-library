@@ -49,17 +49,19 @@
     <div id="black-overlay" class="hidden opacity-70 absolute h-full w-full ml-auto mr-auto left-0 top-0 bottom-0 bg-black z-10"></div>
 
     <div id="header" class="flex justify-between w-full mb-16">
-        <img src="../assets/Logo.png" alt="logo" width="52px" height="52px">
-        <div id="library-title" class="flex items-center">
+        <div id="logo-container" class="w-1/4">
+            <img src="../assets/Logo.png" alt="logo" width="52px" height="52px">
+        </div>
+        <div id="library-title" class="flex justify-center w-2/4">
             <h1 class="text-4xl font-bold text-[#050826] mr-3">My Library</h1>
             <img src="../assets/chevron-up.svg" width="40px">
         </div>
-        <div class="empty"></div>
+        <div class="w-1/4"></div>
     </div>
 
-    <div id="library-section" class="grid grid-cols-6 gap-x-4 gap-y-10">
-        <button id="add-book-btn" class="bg-primary-blue text-white px-6 py-3 rounded-lg">Add Book</button>
-    </div>
+    <div id="library-section" class="grid grid-cols-6 gap-x-4 gap-y-10"></div>
+
+    <button id="add-book-btn" class="bg-primary-blue text-white text-2xl px-12 py-6 rounded-full absolute left-2/4 -ml-[100px] bottom-12 w-fit flex items-center gap-2 shadow-xl shadow-[#4353DB]/30"><img src="../assets/plus.svg"> Add Book</button>
     <script src="script.js"></script>
 </body>
 </html>

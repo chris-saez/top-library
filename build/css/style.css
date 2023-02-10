@@ -549,6 +549,22 @@ html {
   bottom: 0px;
 }
 
+.bottom-4 {
+  bottom: 1rem;
+}
+
+.bottom-12 {
+  bottom: 3rem;
+}
+
+.left-2\/4 {
+  left: 50%;
+}
+
+.right-2\/4 {
+  right: 50%;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -587,6 +603,16 @@ html {
 .mx-16 {
   margin-left: 4rem;
   margin-right: 4rem;
+}
+
+.mx-0 {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.my-auto {
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .ml-auto {
@@ -631,6 +657,26 @@ html {
 
 .mt-12 {
   margin-top: 3rem;
+}
+
+.-ml-4 {
+  margin-left: -1rem;
+}
+
+.-ml-48 {
+  margin-left: -12rem;
+}
+
+.-ml-24 {
+  margin-left: -6rem;
+}
+
+.-ml-\[100\] {
+  margin-left: -100;
+}
+
+.-ml-\[100px\] {
+  margin-left: -100px;
 }
 
 .flex {
@@ -708,6 +754,19 @@ html {
   width: 66.666667%;
 }
 
+.w-1\/4 {
+  width: 25%;
+}
+
+.w-fit {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.w-2\/4 {
+  width: 50%;
+}
+
 .min-w-full {
   min-width: 100%;
 }
@@ -746,6 +805,10 @@ html {
 
 .gap-4 {
   gap: 1rem;
+}
+
+.gap-2 {
+  gap: 0.5rem;
 }
 
 .gap-x-4 {
@@ -918,6 +981,11 @@ html {
   padding-bottom: 0.5rem;
 }
 
+.px-12 {
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
 .pt-12 {
   padding-top: 3rem;
 }
@@ -940,6 +1008,16 @@ html {
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .font-bold {
@@ -1009,6 +1087,22 @@ html {
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-xl {
+  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-\[\#4353DB\]\/30 {
+  --tw-shadow-color: rgb(67 83 219 / 0.3);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.drop-shadow-xl {
+  --tw-drop-shadow: drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08));
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
 .filter {
