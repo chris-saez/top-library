@@ -107,7 +107,7 @@ function scanBooks() {
         libraryCard.appendChild(titleContainer);
         libraryCard.appendChild(bookDetailsContainer);
     
-        addBookButton.before(libraryCard);        
+        librarySection.appendChild(libraryCard);        
     }
 }
 
