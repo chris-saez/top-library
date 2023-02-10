@@ -565,6 +565,14 @@ html {
   right: 50%;
 }
 
+.right-3 {
+  right: 0.75rem;
+}
+
+.right-6 {
+  right: 1.5rem;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -716,6 +724,10 @@ html {
   height: 14rem;
 }
 
+.h-\[100px\] {
+  height: 100px;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -765,6 +777,11 @@ html {
 
 .w-2\/4 {
   width: 50%;
+}
+
+.w-min {
+  width: -moz-min-content;
+  width: min-content;
 }
 
 .min-w-full {

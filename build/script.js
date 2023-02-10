@@ -66,7 +66,7 @@ function scanBooks() {
         libraryCard.setAttribute('data-id', myLibrary.length-1);
 
         let imgContainer = document.createElement("div");
-        imgContainer.setAttribute('class', 'h-56 bg-[#F8F8F9] relative flex justify-center items-center rounded bg-center bg-cover')
+        imgContainer.setAttribute('class', 'h-56 bg-[#F8F8F9] relative flex justify-center items-center rounded bg-center bg-cover');
         
         if(outputArray[i].img == "No cover"){
             let img = document.createElement("img");
@@ -80,18 +80,37 @@ function scanBooks() {
                 });
             reader.readAsDataURL(img_input.files[0]);
         }
+
+        let cardHeaderContainer = document.createElement("div");
+        cardHeaderContainer.setAttribute("class", "bg-black absolute top-0 w-full flex justify-between items-center")
+        imgContainer.appendChild(cardHeaderContainer);
                 
 
         // Create read or not read tag on library card
         let readTag = document.createElement("div");
         if(outputArray[i].read == "Read"){
-            readTag.setAttribute("class", "bg-[#DEF3DC] w-max px-2 py-1 rounded-full text-xs text-[#12BA23] font-bold absolute top-3 left-3 z-0");
+            readTag.setAttribute("class", "bg-[#DEF3DC] w-max h-full px-2 py-1 rounded-full text-xs text-[#12BA23] font-bold");
             readTag.appendChild(document.createTextNode("Read"));
         } else if (outputArray[i].read == "Not Read") {
-            readTag.setAttribute("class", "bg-[#FFE4C5] w-max px-2 py-1 rounded-full text-xs text-[#FC8B24] font-bold absolute top-3 left-3 z-0");
+            readTag.setAttribute("class", "bg-[#FFE4C5] w-max h-full px-2 py-1 rounded-full text-xs text-[#FC8B24] font-bold");
             readTag.appendChild(document.createTextNode("Not Read"));
         }
-        imgContainer.appendChild(readTag);
+        cardHeaderContainer.appendChild(readTag);
+
+        let deleteButton = document.createElement("img");
+        deleteButton.setAttribute("src",  "../assets/trash-02.svg");
+        deleteButton.setAttribute("class", "bg-white w-max p-2 rounded-full");
+        deleteButton.setAttribute("width", "16px");
+        deleteButton.setAttribute("height", "16px");
+        cardHeaderContainer.appendChild(deleteButton);
+
+        let editButton = document.createElement("img");
+        editButton.setAttribute("src",  "../assets/pencil-01.svg");
+        editButton.setAttribute("class", "bg-white w-min p-2 rounded-full flex justify-center items-center");
+        editButton.setAttribute("width", "16px");
+        editButton.setAttribute("height", "16px");
+        cardHeaderContainer.appendChild(editButton);
+        
 
 
         let titleContainer = document.createElement("h1");
