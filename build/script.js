@@ -1,37 +1,4 @@
-let myLibrary = [
-    {
-        title: 'Harry Potter',
-        author: 'JK Rowling',
-        pages: '356',
-        id: '0',
-        read: 'Read',
-        img: 'No cover'
-    },
-    {
-        title: 'Harry Potter',
-        author: 'JK Rowling',
-        pages: '356',
-        id: '1',
-        read: 'Read',
-        img: 'No cover'
-    },
-    {
-        title: 'Harry Potter',
-        author: 'JK Rowling',
-        pages: '356',
-        id: '2',
-        read: 'Read',
-        img: 'No cover'
-    },
-    {
-        title: 'Harry Potter',
-        author: 'JK Rowling',
-        pages: '356',
-        id: '3',
-        read: 'Read',
-        img: 'No cover'
-    },
-];
+let myLibrary = [];
 
 function Book(title, author, pages, id, read, img) {
     this.title = title;
@@ -95,7 +62,7 @@ function scanBooks() {
     // Loops through outputArray of Book objects and creates a library card DOM element for each 
     for (let i=0; i<outputArray.length; i++) {
         let libraryCard = document.createElement("div");
-        libraryCard.setAttribute('class', 'bg-white h-auto w-auto shadow-md border border-slate-800/5 py-3 px-4 rounded-lg');
+        libraryCard.setAttribute('class', 'bg-white h-auto w-auto shadow-md border border-slate-800/5 py-3 px-4 rounded-lg book-card');
         libraryCard.setAttribute('data-id', myLibrary.length-1);
 
         let imgContainer = document.createElement("div");
