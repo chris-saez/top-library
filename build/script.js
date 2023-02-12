@@ -64,7 +64,7 @@ function scanBooks() {
 
         // creates main book card div container
         let libraryCard = document.createElement("div");
-        libraryCard.setAttribute('class', 'bg-white h-auto w-auto shadow-md border border-slate-800/5 py-3 px-4 rounded-lg book-card');
+        libraryCard.setAttribute('class', 'bg-white h-auto w-auto shadow-library-card border border-black/2 py-3 px-4 rounded-lg book-card');
         libraryCard.setAttribute('data-id', myLibrary.length-1);
 
         // creates div container for book img, read tag, and card buttons
@@ -107,7 +107,7 @@ function scanBooks() {
 
         let deleteButton = document.createElement("img");
         deleteButton.setAttribute("src",  "../assets/trash-02.svg");
-        deleteButton.setAttribute("class", "bg-white w-max p-2 rounded-full cursor-pointer");
+        deleteButton.setAttribute("class", "bg-white w-max p-2 rounded-full cursor-pointer shadow-sm-buttons border-[.5px] border-black/2");
 
         deleteButton.addEventListener("click", deleteBook);
 
@@ -115,7 +115,7 @@ function scanBooks() {
 
         let editButton = document.createElement("img");
         editButton.setAttribute("src",  "../assets/pencil-01.svg");
-        editButton.setAttribute("class", "bg-white w-max p-2 rounded-full overflow-visible cursor-pointer");
+        editButton.setAttribute("class", "bg-white w-max p-2 rounded-full overflow-visible cursor-pointer shadow-sm-buttons border-[.5px] border-black/2");
         cardButtons.appendChild(editButton);
 
         cardHeaderContainer.appendChild(cardButtons);
