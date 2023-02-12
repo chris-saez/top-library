@@ -1,13 +1,4 @@
-let myLibrary = [
-    {
-        title: "Harry Potter",
-        author: "JK Rowling",
-        pages: "123",
-        id: "0",
-        read: "Read",
-        img: "No cover"
-    }
-];
+let myLibrary = [];
 
 function Book(title, author, pages, id, read, img) {
     this.title = title;
@@ -43,7 +34,7 @@ function submitForm(){
     if (!img_input.files[0]) {
         bookImg = 'No cover'
     } else {
-        bookImg = 'Cover'
+        bookImg = 'myCover'
     }
 
     let bookId = myLibrary.length;
@@ -116,12 +107,15 @@ function scanBooks() {
 
         let deleteButton = document.createElement("img");
         deleteButton.setAttribute("src",  "../assets/trash-02.svg");
-        deleteButton.setAttribute("class", "bg-white w-max p-2 rounded-full");
+        deleteButton.setAttribute("class", "bg-white w-max p-2 rounded-full cursor-pointer");
+
+        deleteButton.addEventListener("click", deleteBook);
+
         cardButtons.appendChild(deleteButton);
 
         let editButton = document.createElement("img");
         editButton.setAttribute("src",  "../assets/pencil-01.svg");
-        editButton.setAttribute("class", "bg-white w-max p-2 rounded-full overflow-visible");
+        editButton.setAttribute("class", "bg-white w-max p-2 rounded-full overflow-visible cursor-pointer");
         cardButtons.appendChild(editButton);
 
         cardHeaderContainer.appendChild(cardButtons);
@@ -141,8 +135,25 @@ function scanBooks() {
         libraryCard.appendChild(titleContainer);
         libraryCard.appendChild(bookDetailsContainer);
     
-        librarySection.appendChild(libraryCard);        
+        librarySection.appendChild(libraryCard);      
     }
+}
+
+
+// deletes book from myLibrary array
+function deleteBook(event) {
+    let mainBookElement = event.srcElement.parentElement.parentElement.parentElement.parentElement;
+    let deleteIndex = +(mainBookElement.getAttribute('data-id'));
+    let librarySection = Object.values(bookCard);
+
+    myLibrary = myLibrary.filter(deletedBook => deletedBook.id != deleteIndex);
+    for(let i=0; i<myLibrary.length; i++) {
+        myLibrary[i].id = i;
+        console.log(myLibrary[i].id);
+        librarySection[i].setAttribute("data-id", i);
+        console.log(librarySection[i]);
+    }
+    mainBookElement.remove();
 }
 
 const librarySection = document.getElementById("library-section");
@@ -161,7 +172,7 @@ const notReadButton = document.getElementById("not-read-button");
 const img_input = document.getElementById("img_input");
 const img_output = document.getElementById("img_output");
 
-img_input.addEventListener("change", function(){
+img_input.addEventListener("change", () => {
     const reader = new FileReader();
     reader.addEventListener("load", () => {
         uploaded_image = reader.result;
