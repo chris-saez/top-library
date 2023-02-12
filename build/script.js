@@ -34,7 +34,7 @@ function submitForm(){
     if (!img_input.files[0]) {
         bookImg = 'No cover'
     } else {
-        bookImg = 'myCover'
+        bookImg = 'Cover'
     }
 
     let bookId = myLibrary.length;
@@ -139,7 +139,6 @@ function scanBooks() {
     }
 }
 
-
 // deletes book from myLibrary array
 function deleteBook(event) {
     let mainBookElement = event.srcElement.parentElement.parentElement.parentElement.parentElement;
@@ -149,9 +148,7 @@ function deleteBook(event) {
     myLibrary = myLibrary.filter(deletedBook => deletedBook.id != deleteIndex);
     for(let i=0; i<myLibrary.length; i++) {
         myLibrary[i].id = i;
-        console.log(myLibrary[i].id);
         librarySection[i].setAttribute("data-id", i);
-        console.log(librarySection[i]);
     }
     mainBookElement.remove();
 }
@@ -178,7 +175,7 @@ img_input.addEventListener("change", () => {
         uploaded_image = reader.result;
         img_output.style.backgroundImage = `url(${uploaded_image})`;
     });
-    reader.readAsDataURL(this.files[0]);
+    reader.readAsDataURL(img_input.files[0]);
 })
 
 readButton.addEventListener("click", () => {
