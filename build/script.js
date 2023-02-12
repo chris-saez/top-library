@@ -1,4 +1,13 @@
-let myLibrary = [];
+let myLibrary = [
+    {
+        title: "Harry Potter",
+        author: "JK Rowling",
+        pages: "123",
+        id: "0",
+        read: "Read",
+        img: "No cover"
+    }
+];
 
 function Book(title, author, pages, id, read, img) {
     this.title = title;
@@ -61,13 +70,17 @@ function scanBooks() {
 
     // Loops through outputArray of Book objects and creates a library card DOM element for each 
     for (let i=0; i<outputArray.length; i++) {
+
+        // creates main book card div container
         let libraryCard = document.createElement("div");
         libraryCard.setAttribute('class', 'bg-white h-auto w-auto shadow-md border border-slate-800/5 py-3 px-4 rounded-lg book-card');
         libraryCard.setAttribute('data-id', myLibrary.length-1);
 
+        // creates div container for book img, read tag, and card buttons
         let imgContainer = document.createElement("div");
         imgContainer.setAttribute('class', 'h-56 bg-[#F8F8F9] relative flex justify-center items-center rounded bg-center bg-cover');
-        
+       
+        // if user doesn't upload a cover, book card will default to placeholder image
         if(outputArray[i].img == "No cover"){
             let img = document.createElement("img");
             img.setAttribute('src', '../assets/camera-01.svg');
@@ -81,8 +94,9 @@ function scanBooks() {
             reader.readAsDataURL(img_input.files[0]);
         }
 
+        // creates header container for book card read tag and card buttons
         let cardHeaderContainer = document.createElement("div");
-        cardHeaderContainer.setAttribute("class", "bg-black absolute top-0 w-full flex justify-between items-center")
+        cardHeaderContainer.setAttribute("class", "absolute top-0 w-full flex justify-between items-center px-3 pt-2")
         imgContainer.appendChild(cardHeaderContainer);
                 
 
@@ -97,19 +111,20 @@ function scanBooks() {
         }
         cardHeaderContainer.appendChild(readTag);
 
+        let cardButtons = document.createElement("div");
+        cardButtons.setAttribute("class", "flex gap-1")
+
         let deleteButton = document.createElement("img");
         deleteButton.setAttribute("src",  "../assets/trash-02.svg");
         deleteButton.setAttribute("class", "bg-white w-max p-2 rounded-full");
-        deleteButton.setAttribute("width", "16px");
-        deleteButton.setAttribute("height", "16px");
-        cardHeaderContainer.appendChild(deleteButton);
+        cardButtons.appendChild(deleteButton);
 
         let editButton = document.createElement("img");
         editButton.setAttribute("src",  "../assets/pencil-01.svg");
-        editButton.setAttribute("class", "bg-white w-min p-2 rounded-full flex justify-center items-center");
-        editButton.setAttribute("width", "16px");
-        editButton.setAttribute("height", "16px");
-        cardHeaderContainer.appendChild(editButton);
+        editButton.setAttribute("class", "bg-white w-max p-2 rounded-full overflow-visible");
+        cardButtons.appendChild(editButton);
+
+        cardHeaderContainer.appendChild(cardButtons);
         
 
 
