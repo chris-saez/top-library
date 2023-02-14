@@ -106,7 +106,7 @@ function scanBooks() {
             imgContainer.appendChild(img);
         } 
         else {
-            imgContainer.style.backgroundImage = `url(${myLibrary[i].img})`;
+            imgContainer.style.backgroundImage = `url(${outputArray[i].img})`;
         }
 
         // creates header container for book card read tag and card buttons
