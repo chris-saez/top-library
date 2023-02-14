@@ -185,8 +185,8 @@ let currentBookId = '';
 // edit book details of existing books
 function editBook(event) {
     let selectedElement = event.srcElement.parentElement.parentElement.parentElement.parentElement;
-    let bookObj = myLibrary[+selectedElement.getAttribute('data-id')];
     currentBookId = selectedElement.getAttribute('data-id');
+    let bookObj = myLibrary[+currentBookId];
 
     bookTitle.value = bookObj.title;
     bookAuthor.value = bookObj.author;
@@ -202,7 +202,7 @@ function editBook(event) {
         notReadButton.classList.remove("text-[#A2A3AE]");
         notReadButton.classList.add("bg-white", "text-[#4353DB]", "font-bold");
     };
-    
+
     img_output.style.backgroundImage = `url(${bookObj.img})`;
 
     confirmBookButton.classList.add('hidden');
@@ -215,6 +215,7 @@ async function submitChanges() {
     let currentBook = document.querySelector(`[data-id="${currentBookId}"]`);
     let currentHeader = currentBook.querySelector('h1');
     let currentAuthorAndPages = currentBook.querySelector('p');
+    let bookObj = myLibrary[+currentBookId];
 
     // targets read / not read tag
     let currentReadTag = currentBook.firstChild.lastChild.firstChild;
@@ -226,9 +227,11 @@ async function submitChanges() {
     if(readButton.classList.contains('bg-white')){
         readTag.setAttribute("class", "bg-[#DEF3DC] w-max h-full px-2 py-1 rounded-full text-xs text-[#12BA23] font-bold");
         readTag.appendChild(document.createTextNode("Read"));
+        bookObj.read = "Read";
     } else if (notReadButton.classList.contains('bg-white')) {
         readTag.setAttribute("class", "bg-[#FFE4C5] w-max h-full px-2 py-1 rounded-full text-xs text-[#FC8B24] font-bold");
         readTag.appendChild(document.createTextNode("Not Read"));
+        bookObj.read = "Not Read";
     }
 
     if(img_input.files[0]){
@@ -237,13 +240,21 @@ async function submitChanges() {
         if(currentBook.firstChild.childNodes.length > 1){
             currentBook.firstChild.removeChild(currentBook.firstChild.firstChild);
         }
+        bookObj.img = uploaded_image;
     } 
+
+    bookObj.title = bookTitle.value;
+    bookObj.author = bookAuthor.value;
+    bookObj.pages = bookPages.value;
 
     currentBook.firstChild.lastChild.insertBefore(readTag, bookButtons);
     currentAuthorAndPages.removeChild(currentAuthorAndPages.firstChild);
     currentAuthorAndPages.appendChild(document.createTextNode(`${bookAuthor.value} • ${bookPages.value} pages`));
     currentHeader.removeChild(currentHeader.firstChild);
     currentHeader.appendChild(document.createTextNode(`${bookTitle.value}`));
+
+    currentBookId = '';
+
     closeForm();
 }
 
