@@ -13,6 +13,10 @@ function Book(title, author, pages, id, read, img) {
 function openBookForm() {
     bookFormContainer.classList.remove('hidden', 'opacity-0');
     blackOverlay.classList.remove('hidden');
+    if(confirmBookButton.classList.contains('hidden')){
+        confirmBookButton.classList.remove('hidden');
+        saveChangesButton.classList.add('hidden');
+    }
 }
 
 // Closes and hides add book form
@@ -63,7 +67,6 @@ async function submitForm(){
         bookImg = await imgFile();
     }
     
-    console.log(bookImg);
     let bookId = myLibrary.length;
     let newBook = new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookId, bookRead, bookImg);
     myLibrary.push(newBook);
@@ -199,24 +202,27 @@ function editBook(event) {
         notReadButton.classList.remove("text-[#A2A3AE]");
         notReadButton.classList.add("bg-white", "text-[#4353DB]", "font-bold");
     };
+    
     img_output.style.backgroundImage = `url(${bookObj.img})`;
-
 
     confirmBookButton.classList.add('hidden');
     saveChangesButton.classList.remove('hidden');
-    openBookForm();
+    bookFormContainer.classList.remove('hidden', 'opacity-0');
+    blackOverlay.classList.remove('hidden');
 }
 
-function submitChanges() {    
+async function submitChanges() {    
     let currentBook = document.querySelector(`[data-id="${currentBookId}"]`);
     let currentHeader = currentBook.querySelector('h1');
     let currentAuthorAndPages = currentBook.querySelector('p');
+
     // targets read / not read tag
     let currentReadTag = currentBook.firstChild.lastChild.firstChild;
     let bookButtons = currentBook.firstChild.lastChild.lastChild;
     currentBook.firstChild.lastChild.removeChild(currentReadTag);
 
     let readTag = document.createElement("div");
+
     if(readButton.classList.contains('bg-white')){
         readTag.setAttribute("class", "bg-[#DEF3DC] w-max h-full px-2 py-1 rounded-full text-xs text-[#12BA23] font-bold");
         readTag.appendChild(document.createTextNode("Read"));
@@ -224,6 +230,15 @@ function submitChanges() {
         readTag.setAttribute("class", "bg-[#FFE4C5] w-max h-full px-2 py-1 rounded-full text-xs text-[#FC8B24] font-bold");
         readTag.appendChild(document.createTextNode("Not Read"));
     }
+
+    if(img_input.files[0]){
+        let uploaded_image = await imgFile();
+        currentBook.firstChild.style.backgroundImage = `url(${uploaded_image})`;
+        if(currentBook.firstChild.childNodes.length > 1){
+            currentBook.firstChild.removeChild(currentBook.firstChild.firstChild);
+        }
+    } 
+
     currentBook.firstChild.lastChild.insertBefore(readTag, bookButtons);
     currentAuthorAndPages.removeChild(currentAuthorAndPages.firstChild);
     currentAuthorAndPages.appendChild(document.createTextNode(`${bookAuthor.value} • ${bookPages.value} pages`));
